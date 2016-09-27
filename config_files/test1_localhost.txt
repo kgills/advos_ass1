@@ -36,3 +36,13 @@
 # 
 # ./server 3330 output_0.txt 2 0 localhost 3330 localhost 3331 1 1 
 # ./server 3331 output_1.txt 2 1 localhost 3330 localhost 3331 1 0
+
+
+# ./server 3330 output_0.txt 5 0 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 dc03.utdallas.edu 3332 dc04.utdallas.edu 3333 dc05.utdallas.edu 3334 4 1 2 3 4
+# ./server 3331 output_1.txt 5 1 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 dc03.utdallas.edu 3332 dc04.utdallas.edu 3333 dc05.utdallas.edu 3334 3 3 2 4
+# ./server 3332 output_2.txt 5 2 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 dc03.utdallas.edu 3332 dc04.utdallas.edu 3333 dc05.utdallas.edu 3334 5 1 2 3 4 0
+# ./server 3333 output_3.txt 5 3 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 dc03.utdallas.edu 3332 dc04.utdallas.edu 3333 dc05.utdallas.edu 3334 4 4 0 1 2
+# ./server 3334 output_4.txt 5 4 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 dc03.utdallas.edu 3332 dc04.utdallas.edu 3333 dc05.utdallas.edu 3334 6 1 2 3 2 3 1
+# 
+# ./server 3330 output_0.txt 2 0 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 1 1 
+# ./server 3331 output_1.txt 2 1 dc01.utdallas.edu 3330 dc02.utdallas.edu 3331 1 0

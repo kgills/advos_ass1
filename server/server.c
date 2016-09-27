@@ -128,13 +128,16 @@ int main(int argc, char *argv[])
     int all_complete;
     int complete_id;
     unsigned label;
-
+    FILE *output_file;
 
 
     if(argc < 6) {
         fprintf(stderr, "usage: <port> <output_file.txt> <n> <n[i]> <hostname[0]> <port[0]> ... <path_len> <path[0]> ... \n");
         exit(1);
     }
+
+    // Open the output file
+    output_file = fopen(argv[2], "w");
 
     port = strtol(argv[1], NULL, 10);
     n = strtol(argv[N_IDX], NULL, 10);
@@ -316,7 +319,9 @@ int main(int argc, char *argv[])
                     printf("%d ", token.sum[i]);
                 }
                 printf("\n");
-		printf("%d %d\n", label, token.sum[label]);
+                printf("%d %d\n", label, token.sum[label]);
+                fprintf(output_file, "%d %d\n", label, token.sum[label]);
+                fclose(output_file);
 
                 // printf("Last token in path\n");
             } else {

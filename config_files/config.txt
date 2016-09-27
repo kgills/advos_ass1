@@ -1,0 +1,29 @@
+#
+# Configuration file for CS6378 Project 1
+# 
+#
+# As per the "shell" convention, anything following a hash sign is
+# a comment and should be ignored by the parser.
+
+# Number of nodes
+5    	
+
+# Location of each node
+#
+# Format is:
+# Identifier	Hostname	Port	
+	0			dc01.utdallas.edu		3330	
+	1			dc02.utdallas.edu		3331	
+	2			dc03.utdallas.edu		3332	
+	3			dc04.utdallas.edu		3333	
+	4			dc05.utdallas.edu		3334	
+	
+
+# Token path for each node
+# Format is:
+# Identifier      Nodes to be visited (excluding the two endpoints)
+	0				(1, 2, 3, 4)       								# 0 -> 1 -> 2 -> 3 -> 4 -> 0
+	1				(3, 2, 4)       								# 1 -> 3 -> 2 -> 4 -> 1
+	2				(1, 2, 3, 4, 0)    								# 2 -> 1 -> 2 -> 3 -> 4 -> 0 -> 2
+	3				(4, 0, 1, 2)	       							# 3 -> 4 -> 0 -> 1 -> 2 -> 3
+	4				(1, 2, 3, 2, 3, 1)     							# 4 -> 1 -> 2 -> 3 -> 2 -> 3 -> 1 -> 4
