@@ -66,14 +66,14 @@ i = 0
 
 for machine in machines:
 
-	command = ["~/Workspace/AdvancedOS/advos_ass1/server/server",machines[i][2],machines[i][0]+"_output.txt",str(n),machines[i][0]]
+	command = ["~/Workspace/advos_ass1/server/server",machines[i][2],machines[i][0]+"_output.txt",str(n),machines[i][0]]
 
 	for machine2 in machines:
 		command = command + machine2[1:]
 
 	command = command +[str(len(paths[i]) - 1)]+paths[i][1:]
 
-	command = ["ssh","-o","StrictHostKeyChecking=no","kgills@"+machine[1]]+command
+	command = ["ssh","-o","StrictHostKeyChecking=no","khg140030@"+machine[1]]+command
 	# command = " ".join(command)
 	print command
 	p=subprocess.Popen(command)
