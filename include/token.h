@@ -8,5 +8,5 @@ typedef struct {
 	unsigned origin; 			// which node the token came from
 	int path_i; 				// current location in the path
 	int path[MAX_PATHLEN];		// path that the token needs to take
-	unsigned sum[MAX_N];		// sum for each node to increment
+	unsigned sum[10];		// sum for each node to increment
 } token_t;

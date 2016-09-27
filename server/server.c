@@ -9,13 +9,14 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
-#include  <sys/ipc.h>
-#include  <sys/shm.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <time.h>
 #include "token.h"
 
 #define BACKLOG MAX_N    // how many pending connections queue will hold
@@ -105,6 +106,7 @@ void client_send(token_t* token, char* hostname, char* port)
 void end_prog(int sig)
 {
     if(sig == SIGALRM) {
+
         printf("Server closing\n");
         exit(0); 
     }
@@ -125,6 +127,9 @@ int main(int argc, char *argv[])
     int i, n, path_len, n_i;
     int all_complete;
     int complete_id;
+    unsigned label;
+
+
 
     if(argc < 6) {
         fprintf(stderr, "usage: <port> <output_file.txt> <n> <n[i]> <hostname[0]> <port[0]> ... <path_len> <path[0]> ... \n");
@@ -134,9 +139,13 @@ int main(int argc, char *argv[])
     n_i = strtol(argv[NI_IDX], NULL, 10);
     path_len = strtol(argv[NI_IDX+n*2+1], NULL, 10);
 
+    srand(n_i+time(NULL));
+    label = rand() % 10 +1;
+
     printf("n = %d\n", n);
     printf("n_i = %d\n", n_i);
     printf("path_len = %d\n", path_len);
+    printf("label= %d\n", label);
 
     if(n > MAX_N) {
         printf("n > MAX_LEN: %d\n", MAX_N);
@@ -218,16 +227,18 @@ int main(int argc, char *argv[])
     token.path_i = 0;
     for(i = 0; i < path_len; i++) {
         token.path[i] = strtol(argv[NI_IDX+n*2+2+i], NULL, 10);
-        token.sum[i] = 0;
     }
 
     // Set the last node in the path to this node
     token.path[i++] = n_i;
-    token.sum[i] = n_i;
 
     // Finish intializing the token
     for(;i < MAX_PATHLEN; i++) {
         token.path[i] = -1;
+    }
+
+    for(i = 0; i < 10; i++)
+    {
         token.sum[i] = 0;
     }
 
@@ -275,7 +286,7 @@ int main(int argc, char *argv[])
 
             // Increment the path and sum
             token.path_i++;
-            token.sum[n_i]++;
+            token.sum[label]++;
 
             // ***** Parse the token
             if(token.complete == 1) {
@@ -294,6 +305,15 @@ int main(int argc, char *argv[])
                     }
                     client_send(&token, argv[ADDR_IDX+i*2], argv[ADDR_IDX+i*2+1]);
                 }
+
+                // Print the label values
+                printf("labels: ");
+                for(i = 0; i < 10; i++)
+                {
+                    printf("%d ", token.sum[i]);
+                }
+                printf("\n");
+
                 // printf("Last token in path\n");
             } else {
                 // Send it to the next node
@@ -313,6 +333,7 @@ int main(int argc, char *argv[])
             }
 
             if(all_complete) {
+
                 // Send signal to parent that we're finished
                 kill(getppid(), SIGALRM);
             }

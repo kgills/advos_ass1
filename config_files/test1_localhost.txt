@@ -28,11 +28,11 @@
 	3				(4, 0, 1, 2)	       							# 3 -> 4 -> 0 -> 1 -> 2 -> 3
 	4				(1, 2, 3, 2, 3, 1)     							# 4 -> 1 -> 2 -> 3 -> 2 -> 3 -> 1 -> 4
 
-./server 3330 output_0.txt 5 0 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 4 1 2 3 4
-./server 3331 output_1.txt 5 1 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 3 3 2 4
-./server 3332 output_2.txt 5 2 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 5 1 2 3 4 0
-./server 3333 output_3.txt 5 3 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 4 4 0 1 2
-./server 3334 output_4.txt 5 4 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 6 1 2 3 2 3 1
-
-./server 3330 output_0.txt 2 0 localhost 3330 localhost 3331 1 1 
-./server 3331 output_1.txt 2 1 localhost 3330 localhost 3331 1 0
+# ./server 3330 output_0.txt 5 0 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 4 1 2 3 4
+# ./server 3331 output_1.txt 5 1 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 3 3 2 4
+# ./server 3332 output_2.txt 5 2 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 5 1 2 3 4 0
+# ./server 3333 output_3.txt 5 3 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 4 4 0 1 2
+# ./server 3334 output_4.txt 5 4 localhost 3330 localhost 3331 localhost 3332 localhost 3333 localhost 3334 6 1 2 3 2 3 1
+# 
+# ./server 3330 output_0.txt 2 0 localhost 3330 localhost 3331 1 1 
+# ./server 3331 output_1.txt 2 1 localhost 3330 localhost 3331 1 0
