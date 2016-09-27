@@ -1,6 +1,8 @@
 #define MAX_PATHLEN 	128
 #define MAX_N 		 	128
 
+// TODO: make the length dynamic
+
 typedef struct {
 	unsigned complete; 			// non-zero for completion message
 	unsigned origin; 			// which node the token came from
