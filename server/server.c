@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     int rv;
     token_t token;
     int token_sent=0;
-    int i, n, path_len, n_i;
+    int i, n, path_len, n_i, port;
     int all_complete;
     int complete_id;
     unsigned label;
@@ -135,13 +135,16 @@ int main(int argc, char *argv[])
         fprintf(stderr, "usage: <port> <output_file.txt> <n> <n[i]> <hostname[0]> <port[0]> ... <path_len> <path[0]> ... \n");
         exit(1);
     }
+
+    port = strtol(argv[1], NULL, 10);
     n = strtol(argv[N_IDX], NULL, 10);
     n_i = strtol(argv[NI_IDX], NULL, 10);
     path_len = strtol(argv[NI_IDX+n*2+1], NULL, 10);
 
-    srand(n_i+time(NULL));
-    label = rand() % 10 +1;
+    srand(n_i+time(NULL)+port);
+    label = rand() % 10;
 
+    printf("port = %d\n", port);
     printf("n = %d\n", n);
     printf("n_i = %d\n", n_i);
     printf("path_len = %d\n", path_len);
@@ -313,6 +316,7 @@ int main(int argc, char *argv[])
                     printf("%d ", token.sum[i]);
                 }
                 printf("\n");
+		printf("%d %d\n", label, token.sum[label]);
 
                 // printf("Last token in path\n");
             } else {
